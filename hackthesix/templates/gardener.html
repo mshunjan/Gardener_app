@@ -15,11 +15,34 @@
 
 <body>
 
-  <h1>Draggable DIV Element on a Grid</h1>
-
-  <p>Click and hold the mouse button down while moving the DIV element</p>
-
-  <canvas id="c" width="600" height="600"></canvas>
+  <div class="header">
+    <div class="inner_header">
+      <div class="logo">
+        <h1>Welcome<span> Gardener</span></h1>
+      </div>
+    </div>
+  </div>
+  <div class='btn-group'>
+    <button id="bush-but">
+      Bush
+    </button>
+    <button id="flower-but">
+      Flower
+    </button> 
+    <button id="tree-but"> 
+      Tree
+    </button> 
+    <!-- <button class="group">Group</button>
+    <button id="ungroup">Ungroup</button>
+    <button id="multiselect">Multiselect</button> -->
+  </div>
+  <div class="grid">
+    <canvas id="c" width="600" height="600">  
+      <img src="{% static 'gardener/res-bush.png'%}" id='bush-pic'>   
+      <img src="{% static 'gardener/res-flower.png'%}" id='flower-pic'>  
+      <img src="{% static 'gardener/res-tree.png'%}" id='tree-pic'> 
+    </canvas>
+  </div>
   <script src="{% static 'gardener/script.js' %}"></script>
 </body>
 </html>
