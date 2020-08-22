@@ -1,6 +1,6 @@
-// var canvas = new fabric.Canvas('c', { selection: false });
-var canvas = this.__canvas = new fabric.Canvas('c');
-fabric.Object.prototype.transparentCorners = false;
+var canvas = new fabric.Canvas('c', { selection: false });
+// var canvas = this.__canvas = new fabric.Canvas('c');
+// fabric.Object.prototype.transparentCorners = false;
 var grid = 50;
 
 // create grid
@@ -48,6 +48,20 @@ function removeAll() {
   }
   canvas.renderAll();
 }
+
+function makesquare() {
+      var square = new fabric.Rect({ 
+        left: 100, 
+        top: 100, 
+        width: 50, 
+        height: 50, 
+        fill: '#9f9', 
+        originX: 'left', 
+        originY: 'top',
+        centeredRotation: true
+      });
+      canvas.add(square);
+    }
 
 // // add objects 
 //   function makerect() {
@@ -152,7 +166,8 @@ canvas.on('mouse:up', function(opt) {
       sprout = $('sprout-but'),
       flower = $('flower-but'),
       tree = $('tree-but'),
-      del = $('del-but'); 
+      del = $('del-but'), 
+      grass = $('grass-but');
       // bush_img = $('bush_pic'),
       // flower_img = $('flower_pic'),
       // tree_img = $('tree_pic');
@@ -163,6 +178,7 @@ canvas.on('mouse:up', function(opt) {
       flower.onclick = makeflower;
       tree.onclick = maketree;
       sprout.onclick = makesprout;
+      grass.onclick = makesquare;
 
       del.onclick = removeAll;
 
