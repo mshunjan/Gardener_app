@@ -33,5 +33,3 @@ def getPlantDetailsByName(name):
     print(details)
     return details
 
-
-getPlantDetailsByName("eastern teaberry")
