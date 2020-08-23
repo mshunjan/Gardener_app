@@ -4,11 +4,10 @@ var canvas = new fabric.Canvas('c', { selection: false });
 var grid = 50;
 
 // create grid
-
 for (var i = 0; i < (600 / grid); i++) {
   canvas.add(new fabric.Line([ i * grid, 0, i * grid, 600], { stroke: '#ccc', selectable: false }));
   canvas.add(new fabric.Line([ 0, i * grid, 600, i * grid], { stroke: '#ccc', selectable: false }))
-}
+} 
 
 // new add objects function
 
@@ -91,6 +90,8 @@ function makesquare() {
 //     canvas.add(circle);
 //   }  
 
+// The following section are interactive functions
+ 
 // snap to grid
 
 canvas.on('object:moving', function(options) { 
@@ -160,6 +161,7 @@ canvas.on('mouse:up', function(opt) {
   this.selection = true;
 });
 
+// button functions
 
   var $ = function(id){return document.getElementById(id)};  
   var bush= $('bush-but'),
