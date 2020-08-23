@@ -1,0 +1,13 @@
+ 
+{% extends 'base.html' %}
+   {% block content %}
+    <h2>Trefle Search</h2>
+    <form method="get">
+      <input type="text" name="q">
+      <button type="submit">Search</button>
+    </form>
+    {% if garden_object %} 
+      <p><strong>This is a {{ garden_object.data}}</strong>.</p>
+    {% endif %}
+    {% endblock %} 
+

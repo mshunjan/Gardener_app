@@ -1,13 +1,18 @@
 var canvas = new fabric.Canvas('c', { selection: false });
+
 canvas.setHeight(600);
 canvas.setWidth(600);
 canvas.setBackgroundImage('https://thumbs.dreamstime.com/b/fertile-garden-soil-texture-background-top-view-seen-above-gardening-planting-concept-isolated-white-80867918.jpg', canvas.renderAll.bind(canvas), {
   width: canvas.width,
-  height: canvas.height,
+  height: canvas.height, 
   // Needed to position backgroundImage at 0/0
+  opacity: .4,
   originX: 'left',
   originY: 'top'
 });
+
+// serializing empty canvas 
+
 // var canvas = this.__canvas = new fabric.Canvas('c');
 // fabric.Object.prototype.transparentCorners = false;
 var grid = 50;
@@ -18,13 +23,38 @@ for (var i = 0; i < (600 / grid); i++) {
   canvas.add(new fabric.Line([ 0, i * grid, 600, i * grid], { stroke: '#ccc', selectable: false }))
 } 
 
+// id generator
+
+function generateId(prefix,start) {
+  var i = start || 0;
+  return function() {
+      return prefix + i++;
+  }
+}
+
+var idsprout = generateId("sprout",0)
+var idbush = generateId("bush",0)
+var idflower = generateId("flower",0)
+var idtree = generateId("tree",0)
+var idgrass = generateId("sprout",0)
 // new add objects function
 
 function makesprout(){
   var imgElement = document.getElementById('sprout-pic'); 
   var imgInstance = new fabric.Image(imgElement);
-  canvas.add(imgInstance).setActiveObject(imgInstance); 
-}
+  imgInstance.toObject = (function(toObject) {
+    return function() {
+      return fabric.util.object.extend(toObject.call(this), {
+        name: this.name
+      });
+    };
+  })(imgInstance.toObject); 
+
+  canvas.add(imgInstance).setActiveObject(imgInstance);  
+  
+  imgInstance.name = idsprout()
+  console.log(JSON.stringify(canvas));
+} 
 
 function makebush(){
   var imgElement = document.getElementById('bush-pic'); 
@@ -184,8 +214,8 @@ canvas.on('mouse:up', function(opt) {
       // tree_img = $('tree_pic');
       // group = $('group'),
       // ungroup = $('ungroup'),
-      // multiselect = $('multiselect'), 
-      bush.onclick = makebush;
+      // multiselect = $('multiselect'),   
+      bush.onclick = makebush; 
       flower.onclick = makeflower;
       tree.onclick = maketree;
       sprout.onclick = makesprout;

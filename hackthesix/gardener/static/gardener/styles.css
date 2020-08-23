@@ -38,15 +38,17 @@ html, body {
  
 .grid {
   float:left;
+  width:55%;
+  height: 70%;  
 }
 
 canvas { 
   padding: 25px;    
-  height: 90%;
+  height: 90%; 
 }
 
 .btn-group { 
-  width: 200px; 
+  width:15%;  
   float: left;
   align-self: center;
 }
@@ -74,5 +76,10 @@ button:active {
   background-color: #3e8e41;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
+} 
+
+.search {
+  float: right;
+  height: auto;
+  width:30%
 }
-  
