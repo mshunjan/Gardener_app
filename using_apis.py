@@ -1,8 +1,7 @@
 import requests  
 import json 
 import os
-
-API_TOKEN = 'e8GOvXk9xSCoNQgjLg95RyxkXa1zpPMxv-T2croQ09w'
+ 
 
 def getPlantIdByName(name):
     search_par = {'q': name, 'token' : API_TOKEN}
