@@ -1,18 +1,20 @@
 import requests  
 import json 
+import os
 
 API_TOKEN = 'e8GOvXk9xSCoNQgjLg95RyxkXa1zpPMxv-T2croQ09w'
 
-def __getPlantIdByName(name):
+def getPlantIdByName(name):
     search_par = {'q': name, 'token' : API_TOKEN}
 
     plant_search = requests.get("https://trefle.io/api/v1/plants/search", search_par)
 
     p_dict = plant_search.json() 
-    return p_dict['data'][0]['id']  
+    return p_dict 
 
+print(getPlantIdByName('eastern teaberry'))
 
-def __getPlantDetailsById(id):
+def getPlantDetailsById(id):
     retrieve_par = {'token' : API_TOKEN}
     plant_retrieve = requests.get("https://trefle.io/api/v1/plants/{}".format(id), retrieve_par)
 
@@ -27,8 +29,8 @@ def __getPlantDetailsById(id):
     }
 
 def getPlantDetailsByName(name):
-    id = __getPlantIdByName(name)
-    details = __getPlantDetailsById(id)
+    id = getPlantIdByName(name)
+    details = getPlantDetailsById(id)
 
     print(details)
     return details

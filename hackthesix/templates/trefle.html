@@ -1,13 +1,20 @@
- 
 {% extends 'base.html' %}
-   {% block content %}
-    <h2>Trefle Search</h2>
-    <form method="get">
-      <input type="text" name="q">
-      <button type="submit">Search</button>
-    </form>
-    {% if garden_object %} 
-      <p><strong>This is a {{ garden_object.data}}</strong>.</p>
-    {% endif %}
-    {% endblock %} 
 
+{% block content %}
+  <h2>Trefle API</h2>
+  <form method="get">
+    <input type="text" name="client">
+    <button type="submit">Search on Trefle</button>
+  </form>
+  {% if search_result %}
+    {% if search_result.success %}
+      <p>
+        <strong>{{ search_result.name|default_if_none:search_result.login }}</strong> has
+        <strong>{{ search_result.public_repos }}</strong>.
+      </p>
+    {% else %}
+      <p><em>{{ search_result.message }}</em></p>
+    {% endif %}
+    <p>Rate limit: {{ search_result.rate.remaining }}/{{ search_result.rate.limit }}</p>
+  {% endif %}
+{% endblock %}

@@ -18,16 +18,30 @@ API_TOKEN = os.environ.get('API_TOKEN')
 
 
 def trefle(request): 
-    garden_object = {}
-    if 'search' in request.GET:
-        search = request.GET.get['search'] 
-        # search_par = {'q': search, 'token' : API_TOKEN}
-        url = "https://trefle.io/api/v1/plants/search%s&token=%s" %(search, API_TOKEN)
+    search_result = {}
+    if 'q' in request.GET:
+        username = request.GET['q']
+        url = 'https://trefle.io/api/v1/plants/search%s' % username
         response = requests.get(url)
-        garden_object = response.json()
-    return render(request, 'trefle.html', {
-        'id': garden_object.keys()  
-        })
+        search_was_successful = (response.status_code == 200)  # 200 = SUCCESS
+        search_result = response.json()
+        search_result['success'] = search_was_successful
+        search_result['rate'] = {
+            'limit': response.headers['X-RateLimit-Limit'],
+            'remaining': response.headers['X-RateLimit-Remaining'],
+        }
+    return render(request, 'trefle.html', {'search_result': search_result})
+    # garden_object = {}
+    # if 'search' in request.GET:
+    #     # search = request.GET.get['search'] 
+    #     # search_par = {'q': search, 'token' : API_TOKEN}
+    #     # url = "https://trefle.io/api/v1/plants/search%s&token=%s" %(search, API_TOKEN)
+    #     url = "https://trefle.io/api/v1/plants/search?q=%27eastern+teaberry%27&token=e8GOvXk9xSCoNQgjLg95RyxkXa1zpPMxv-T2croQ09w"
+    #     response = requests.get(url)
+    #     garden_object = response.json()
+    # return render(request, 'trefle.html', {
+    #     'id': garden_object.keys()  
+    #     })
 
 
 # def addItem(request): 
