@@ -1,4 +1,13 @@
 var canvas = new fabric.Canvas('c', { selection: false });
+canvas.setHeight(600);
+canvas.setWidth(600);
+canvas.setBackgroundImage('https://thumbs.dreamstime.com/b/fertile-garden-soil-texture-background-top-view-seen-above-gardening-planting-concept-isolated-white-80867918.jpg', canvas.renderAll.bind(canvas), {
+  width: canvas.width,
+  height: canvas.height,
+  // Needed to position backgroundImage at 0/0
+  originX: 'left',
+  originY: 'top'
+});
 // var canvas = this.__canvas = new fabric.Canvas('c');
 // fabric.Object.prototype.transparentCorners = false;
 var grid = 50;

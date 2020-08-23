@@ -45,13 +45,13 @@
     <button id="ungroup">Ungroup</button>
     <button id="multiselect">Multiselect</button> -->
   </div>
-  <div class="grid">
-    <canvas id="c" width="600" height="600">  
+  <div class="grid" style="width: 80%; height: 80%; border: 2px solid black">
+    <canvas id="c" width="800" height="800" style="margin: 10px;">  
       <img src="{% static 'gardener/res-bush.png'%}" id='bush-pic'>   
       <img src="{% static 'gardener/res-flower.png'%}" id='flower-pic'>  
       <img src="{% static 'gardener/res-tree.png'%}" id='tree-pic'> 
       <img src="{% static 'gardener/res-sprout.png'%}" id='sprout-pic'> 
-    </canvas>
+    </canvas> 
   </div>
   <script src="{% static 'gardener/script.js' %}"></script>
 </body>
